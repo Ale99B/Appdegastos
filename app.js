@@ -120,6 +120,5 @@ do{
     rta = prompt("¿Desea terminar la suma de los gastos? (escriba 'SI' para finalizar)").toUpperCase()
 }while(rta != "SI")
 
-
 alert( "El total es de: $"+carrito.calcularTotal() )
 
