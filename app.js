@@ -1,124 +1,56 @@
 // alert("Bienvenido a la App de gestion de gastos")
 
 
-
 class ProductoSemanal{
-    constructor(producto, gasto, descuento, ahorro) {
-        this.producto = producto
-        this.gasto = parseFloat(gasto)
+    constructor(nombre, precio, descuento) {
+        this.nombre = nombre
+        this.precio = precio
         this.descuento = descuento
-        this.ahorro =  ahorro
-        this.cantidad = 0
-    }
-
-    agregarCantidad(cantidadRequerida) {
-        this.cantidad = this.cantidad + cantidadRequerida
-    }
-
-    descripcion(){
-        return "Producto: " +this.producto+ "Gasto: " + this.gasto+ "Descuento: " +this.descuento+ "Ahorro:" +this.ahorro+ "\n"
-    }
-
-    descripcionCarrito() {
-        return "Producto: " +this.producto+ "Gasto: " + this.gasto+ "Descuento: " +this.descuento+ "Ahorro:" +this.ahorro+ "Cantidad: " +this.cantidad+ "\n"
     }
 }
 
-class Carrito{
+class Gestion{
     constructor(){
-        this.listaCarrito = []
-    }
-
-    sumar(productoNuevo) {
-        let existe = this.listaCarrito.some(producto => producto.producto == productoNuevo.producto)
-        if (!existe){
-            this.listaCarrito.push(productoNuevo)
-        }
-    }
-
-    mostrar() {
-        let descripcionDeCompra = "Carrito: "
-        this.listaCarrito.forEach( producto => {
-            descripcionDeCompra = descripcionDeCompra + producto.descripcionCarrito()
-            return descripcionDeCompra
-        })
-    }
-
-    sumaDelTotal() {
-        return this.listaCarrito.reduce ( (total,producto) => total + producto.precio * producto.cantidad, 0)
+        this.listaGestion = []
     }
 }
 
-class Lista {
-    constructor() {
-        this.listaProductos = []
+class GestionDeProductos{
+    constructor(){
+        this.gestionarListado = []
     }
 
-    agregar(producto) {
-        this.listaProductos.push(producto)
+    agregar(productoSemanal) {
+        this.gestionarListado.push(productoSemanal)
     }
 
-    mostrar(){
-        let listaAcumulativa = "Recuerde que tipo de producto desea agregar"
-        this.listaProductos.forEach ( producto => {
-            listaAcumulativa = listaAcumulativa + producto.descripcion()
+    presentar() {
+        let ordenDeProductos = ""
+        this.gestionarListado.forEach ( productoSemanal => {
+            // alert(productoSemanal.nombre+" "+productoSemanal.precio)
+            ordenDeProductos =  ordenDeProductos + " Nombre: " +productoSemanal.nombre+ " Precio: "+productoSemanal.precio+"\n"
+            return ordenDeProductos
         })
-        return listaAcumulativa
-    }
-
-    rastrearProducto(producto) {
-        return this.listaProductos.find(producto => producto.producto == producto)
     }
 }
 
-const p1 = new Producto ("alimentos")
-const p2 = new Producto ("higiene2")
-const p3 = new Producto ("limpieza")
-const p4 = new Producto ("decoracion")
-const p5 = new Producto ("ropa")
-const p6 = new Producto ("extras")
 
 
-const inventario = new Lista ()
-inventario.agregar(p1)
-inventario.agregar(p2)
-inventario.agregar(p3)
-inventario.agregar(p4)
-inventario.agregar(p5)
-inventario.agregar(p6)
+const p1 = new ProductoSemanal("alimentos",5000)
+const p2 = new ProductoSemanal ("higiene",6000)
+const p3 = new ProductoSemanal ("limpieza",3000)
+const p4 = new ProductoSemanal ("decoracion",6500)
+const p5 = new ProductoSemanal ("ropa",9000)
+const p6 = new ProductoSemanal ("extras",7000)
 
-const carrito = new Carrito ()
-const gestorProducto = new Lista ()
+const reguladorDeGestion = new GestionDeProductos()
 
-gestorProducto.agregar(p1)
-gestorProducto.agregar(p2)
-gestorProducto.agregar(p3)
-gestorProducto.agregar(p4)
-gestorProducto.agregar(p5)
-gestorProducto.agregar(p6)
+reguladorDeGestion.agregar(p1)
+reguladorDeGestion.agregar(p2)
+reguladorDeGestion.agregar(p3)
+reguladorDeGestion.agregar(p4)
+reguladorDeGestion.agregar(p5)
+reguladorDeGestion.agregar(p6)
 
-
-// --------------------------
-
-let rta = " "
-let listaCompras = ""
-
-
-
-do{
-    
-    alert( gestorProducto.mostrar() )
-    
-    let articulo  = Number.parseInt(prompt("Ingrese el articulo que quiera agregar"))
-    const producto = gestorProducto.rastrearProducto(producto)
-    let cantidadDeseada = Number(prompt("Ingrese la cantidad que desea"))
-    producto.agregarCantidad(cantidadDeseada)
-    carrito.agregar(producto)
-    alert( carrito.mostrar() )
-
-
-    rta = prompt("¿Desea terminar la suma de los gastos? (escriba 'SI' para finalizar)").toUpperCase()
-}while(rta != "SI")
-
-alert( "El total es de: $"+carrito.calcularTotal() )
+alert( reguladorDeGestion.presentar() )
 
