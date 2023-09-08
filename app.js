@@ -102,3 +102,18 @@ do{
 
 
 alert("El total es de $"+gestionCarrito.calcularTotal())
+
+
+const economia = [
+    { nombre: 'Alimentos', gasto: $55000},
+    { nombre: 'Higiene', gasto: $30000},
+    { nombre: 'Limpieza', gasto: $45000},
+    { nombre: 'Decoracion', gasto: $100000},
+    { nombre: 'Ropa', gasto: $120000},
+    { nombre: 'Extras', gasto: $23000},
+]
+economia.some((economia) => {
+    return economia.gasto <= $50000 
+})
+
+console.log(economia.gasto())
