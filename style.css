@@ -1,9 +1,27 @@
 *{
-    margin: 0;
     padding: 0;
-    box-sizing: border-box;
+    margin: 0;
+    background-color: blanchedalmond;
 }
 
-body{
-    background: #453636;
+.reloj {
+    font-family: "Share Tech Mono", monospace;
+    text-align: center;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    color: #daf6ff;
+    text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
+}
+
+#hora {
+    letter-spacing: 0.05em;
+    font-size: 80px;
+    padding: 5px 0;
+}
+
+#fecha {
+    letter-spacing: 0.1em;
+    font-size: 24px;
 }

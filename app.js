@@ -27,12 +27,13 @@ class GestionCarrito{
         this.listaGestionCarrito = []
     }
 
-    agregar(productoSemanalNuevo){
-        let subsiste = this.gestionCarrito.some(productoSemanal => productoSemanal.nombre == productoSemanalNuevo.nombre)
-        if(!subsiste){
-            this.gestionCarrito.push(productoSemanalNuevo)
-        }
-    }
+    agregar(productoSemanalNuevo) {
+		let subsiste = this.listaGestionCarrito.some((productoSemanal) => productoSemanal.nombre == productoSemanalNuevo.nombre);
+		if (!subsiste) {
+			this.listaGestionCarrito.push(productoSemanalNuevo);
+		}
+	}
+
 
     mostrar(){
         let ordenDeCarrito = "Carrito: \n\n";
@@ -117,3 +118,39 @@ economia.some((economia) => {
 })
 
 console.log(economia.gasto())
+
+
+
+
+
+// Este DOM implementarlo con mi app para que cumpla dos funciones
+// una va ser que este en el inicio y se pueda adaptar a cualquier
+// y la otra es que cuando se carge algun producto semanal indique
+// la fecha de cuando lo cargo 
+
+// tratar de implementar bien el constructor
+
+const semana = ["Lunes", "Martes", "Miercoles", "Jueves", "Viernes", "Sabado", "Domingo"];
+
+function actualizarTiempo() {
+    let ahora = new fecha();
+
+    document.getElementById("tiempo").innerText =
+        sinRelleno(ahora.obtenerHora(), 2) + ":" +
+        sinRelleno(ahora.obtenerMinutos(), 2) + ":" +
+        sinRelleno(ahora.obtenerSegundos(), 2);
+
+        document.getElementById("fecha").innerText =
+        ahora.obtenerAñoCompleto() + "-" +
+        sinRelleno(ahora.obtenerMes() + 1, 2) + "-" +
+        sinRelleno(ahora.obtenerFecha(), 2)+ "-" +
+        semana[ahora.obtenerDia()];
+}
+
+actualizarTiempo();
+intervalo(actualizarTiempo, 1000);
+
+function sinRelleno(num, digital) {
+    return String(num).padStart(digital, '0');
+}
+
